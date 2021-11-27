@@ -20,10 +20,6 @@ acesso aos dados de outro por esta configuração.
 composer require rocketslab/neewton
 ```
 
-> Uma observação aqui: esse pacote altera o arquivo `app.js` da sua
-> aplicação. Se precisa de algo contido nele, faça um backup e depois
-> integre o que precisa ao `app.js` novamente.
-
 ### Copiando os assets para a aplicação Laravel
 
 ```shell
@@ -38,6 +34,33 @@ php artisan neewton:install --composer=<caminho para o composer>
 
 ---
 ## Configurando para que a aplicação reconheça os módulos
+
+### Lado Cliente
+
+Faça a seguinte alteração no seu arquivo `app.js` para que os 
+módulos sejam resolvidos no InertiaJs.
+
+*Antes:*
+```javascript
+createInertiaApp(...
+    
+    resolve: import(`./Pages/${name}.vue`).then(module => module.default)
+    
+...)
+```
+
+*Depois:*
+```javascript
+import neewton from '@/neewton';
+
+createInertiaApp(...
+    
+    resolve: (name) => neewton(name),
+    
+...)
+```
+
+### Lado Servidor
 
 O **Neewton** registra uma tag blade `@neewtonModules` para que os módulos sejam
 localizados e configurados.

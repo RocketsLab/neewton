@@ -30,7 +30,7 @@ class NeewtonInstallCommand extends Command
         }
 
         // Copy stubs
-        copy(__DIR__.'/../../stubs/js/app.js', resource_path('js/app.js'));
+        copy(__DIR__.'/../../stubs/js/neewton.js', resource_path('js/neewton.js'));
     }
 
     protected function installInertiaVueStack()
@@ -46,6 +46,7 @@ class NeewtonInstallCommand extends Command
                     '@vue/compiler-sfc' => '^3.0.5',
                     'vue' => '^3.0.5',
                     'vue-loader' => '^16.1.2',
+                    'lodash' => '^4.17.19',
                 ] + $packages;
         });
 
