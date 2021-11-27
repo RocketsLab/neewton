@@ -64,7 +64,7 @@ class NeewtonServiceProvider extends ServiceProvider
     protected function registerBladeDirective()
     {
         $neewtonModules = json_encode($this->modulesConfiguration, true);
-        Blade::directive('neewtonModules', fn() => "<script>window.applicationModules = $neewtonModules</script>");
+        Blade::directive('neewtonModules', fn() => "<script>window.neewtonModules = $neewtonModules</script>");
     }
 
 }

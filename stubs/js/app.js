@@ -16,7 +16,7 @@ createInertiaApp({
         }
 
         const [moduleName, modulePage] = name.split('::');
-        const neewtonModule = _.find(window.applicationModules, { name: moduleName });
+        const neewtonModule = _.find(window.neewtonModules, { name: moduleName });
 
         if(! neewtonModule) {
             throw new Error(`Module ${moduleName} not found.`)
