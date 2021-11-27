@@ -38,28 +38,26 @@ class NeewtonServiceProvider extends ServiceProvider
 
     protected function bootModules()
     {
-        if (config('modules.enabled')) {
-            foreach ($modules = config('modules.enabled') as $moduleClass) {
+        foreach ($modules = config('neewton.active_modules') as $moduleClass) {
 
-                $instance = app($moduleClass);
+            $instance = app($moduleClass);
 
-                if (!$instance instanceof ModuleContract) {
-                    throw new \Exception("A classe {$moduleClass} não é um módulo.");
-                }
-
-                if (!$instance->depends()) {
-                    $this->modulesConfiguration[] = $instance->configure();
-                    continue;
-                }
-
-                foreach ($instance->depends() as $dependencyClass) {
-                    if (!in_array($dependencyClass, $modules)) {
-                        throw new \Exception("Modulo {$moduleClass} depends from {$dependencyClass}.");
-                    }
-                }
-
-                $this->modulesConfiguration[] = $instance->configure();
+            if (!$instance instanceof ModuleContract) {
+                throw new \Exception("A classe {$moduleClass} não é um módulo.");
             }
+
+            if (!$instance->depends()) {
+                $this->modulesConfiguration[] = $instance->configure();
+                continue;
+            }
+
+            foreach ($instance->depends() as $dependencyClass) {
+                if (!in_array($dependencyClass, $modules)) {
+                    throw new \Exception("Modulo {$moduleClass} depends from {$dependencyClass}.");
+                }
+            }
+
+            $this->modulesConfiguration[] = $instance->configure();
         }
     }
 
