@@ -6,7 +6,8 @@ use Illuminate\Console\Command;
 
 class NeewtonInstallCommand extends Command
 {
-    protected $signature = "neewton:install";
+    protected $signature = "neewton:install 
+                            {--composer=global : Absolute path to the Composer binary which should be used to install packages}";
 
     /**
      * The console command description.
