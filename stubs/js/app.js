@@ -15,14 +15,14 @@ createInertiaApp({
             return import(`./Pages/${name}.vue`).then(module => module.default)
         }
 
-        const [packageName, packagePage] = name.split('::');
-        const packageFolder = _.find(window.applicationModules, { name: packageName });
+        const [moduleName, modulePage] = name.split('::');
+        const neewtonModule = _.find(window.applicationModules, { name: moduleName });
 
-        if(! packageFolder) {
-            throw new Error(`Module ${packageName} not found.`)
+        if(! neewtonModule) {
+            throw new Error(`Module ${moduleName} not found.`)
         }
 
-        return import(`/../vendor/${packageFolder.vendor}/src/resources/js/Pages/${packagePage}.vue`)
+        return import(`/../vendor/${neewtonModule.vendor}/src/${neewtonModule.resourcePath}/${modulePage}.vue`)
             .then(module => module.default)
     },
     setup({ el, app, props, plugin }) {
