@@ -3,6 +3,9 @@
 namespace RocketsLab\Neewton\Console;
 
 use Illuminate\Console\Command;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Str;
+use Symfony\Component\Process\Process;
 
 class NeewtonInstallCommand extends Command
 {
