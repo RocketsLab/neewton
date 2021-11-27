@@ -1,6 +1,6 @@
 <?php
 
-namespace RocketsLab\Newton;
+namespace RocketsLab\Neewton;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
@@ -43,7 +43,7 @@ class NeewtonServiceProvider extends ServiceProvider
 
                 $instance = app($moduleClass);
 
-                if (!$instance instanceof ModuleRegister) {
+                if (!$instance instanceof ModuleContract) {
                     throw new \Exception("A classe {$moduleClass} não é um módulo.");
                 }
 
