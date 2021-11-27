@@ -18,6 +18,10 @@ createInertiaApp({
         const [packageName, packagePage] = name.split('::');
         const packageFolder = _.find(window.applicationModules, { name: packageName }).vendor;
 
+        if(! packageFolder) {
+            throw new Error(`Module ${packageName} not found.`)
+        }
+
         return import(`/../vendor/${packageFolder}/src/resources/js/Pages/${packagePage}.vue`).then(module => module.default)
     },
     setup({ el, app, props, plugin }) {
