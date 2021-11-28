@@ -60,6 +60,19 @@ createInertiaApp(...
 ...)
 ```
 
+## Laravel Mix
+
+Verifique se seu `webpack.mix.js` chama o método `vue()`. Isso é 
+necessário para que o LaravelMix/Webpack encontre e compile os
+arquivos `.vue` da aplicação e dos módulos.
+
+*webpack.mix.js*
+```javascript
+mix.js('resources/js/app.js', 'public/js')
+    .vue() // <<<<< == adicione esta linha
+    ... // demais plugins/funções (se houver)
+```
+
 ### Lado Servidor
 
 O **Neewton** registra uma tag blade `@neewtonModules` para que os módulos sejam
