@@ -7,8 +7,15 @@ export default (name) => {
         return import(`./Pages/${name}.vue`).then(module => module.default)
     }
 
+    const neewtonMetaTag = document.querySelector('meta[name="neewton-modules"]')
+
+    if(! neewtonMetaTag) {
+        throw new Error("Modules meta tag not found.")
+    }
+
+    const decrypted = atob(neewtonMetaTag.content)
     const [moduleName, modulePage] = name.split('::');
-    const neewtonModule = _.find(window.neewtonModules, { name: moduleName });
+    const neewtonModule = _.find(JSON.parse(decrypted), { name: moduleName });
 
     if(! neewtonModule) {
         throw new Error(`Module ${moduleName} not found.`)
