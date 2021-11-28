@@ -51,11 +51,11 @@ createInertiaApp(...
 
 *Depois:*
 ```javascript
-import neewton from '@/neewton';
+import neewton from './neewton';
 
 createInertiaApp(...
     
-    resolve: (name) => neewton(name),
+    resolve: name => neewton(name),
     
 ...)
 ```
